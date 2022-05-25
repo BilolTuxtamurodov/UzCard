@@ -7,11 +7,6 @@ import java.time.LocalDateTime;
 
 @Data
 public class CardDTO {
-    private String uuid;
-    private LocalDateTime createdDate;
-    private String number;
-    private String expDate;
-    private Long balance;
     private String clientId;
     private String phone;
 }

@@ -1,13 +1,15 @@
-package com.company.UzCard.dto.request;
+package com.company.UzCard.dto.response;
 
 import com.company.UzCard.enums.TransactionStatus;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-
-@Data
-public class TransactionDTO {
+@Getter
+@Setter
+public class ResponseTransactionDTO {
+    private String uuid;
+    private LocalDateTime createdDate;
     private String fromCard;
     private String toCard;
     private Long amount;

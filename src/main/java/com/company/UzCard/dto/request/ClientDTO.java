@@ -7,11 +7,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-public class ClientDTO implements Serializable {
-    private final String uuid;
-    private final LocalDateTime createdDate;
-    private final String name;
-    private final String surname;
-    private final String phone;
-    private final EntityStatus status;
+public class ClientDTO {
+    private String name;
+    private String surname;
+    private String phone;
+    private EntityStatus status;
 }
