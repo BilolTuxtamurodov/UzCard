@@ -1,6 +1,6 @@
 package com.company.UzCard.service;
 
-import com.company.UzCard.controller.ClientRepository;
+import com.company.UzCard.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
