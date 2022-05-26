@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ResponseClientDTO {
-    private String uuid;
+    private String id;
     private LocalDateTime createdDate;
     private String name;
     private String surname;

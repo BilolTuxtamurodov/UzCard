@@ -26,12 +26,11 @@ import java.util.Optional;
 public class CardService {
     private final CardRepository cardRepository;
 
-    public ResponseCardDTO created(CardDTO dto) {
+    public ResponseCardDTO create(CardDTO dto) {
         CardEntity entity = new CardEntity();
         entity.setCardNumber(generateCardNumber());
         entity.setBalance(0L);
         entity.setClientId(dto.getClientId());
-        entity.setPhone(dto.getPhone());
         entity.setStatus(EntityStatus.ACTIVE);
         String expDate = String.valueOf(LocalDateTime.now().plusYears(4));
         entity.setExpDate(expDate);

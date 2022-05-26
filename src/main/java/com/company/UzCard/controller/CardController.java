@@ -27,8 +27,8 @@ public class CardController  {
 
     @ApiOperation(value = "Create", notes = "Method used for create card", nickname = "Bilol")
     @PostMapping("/create")
-    public ResponseEntity<ResponseCardDTO> created(@RequestBody @Valid CardDTO dto){
-        return ResponseEntity.ok(cardService.created(dto));
+    public ResponseEntity<ResponseCardDTO> create(@RequestBody @Valid CardDTO dto){
+        return ResponseEntity.ok(cardService.create(dto));
     }
 
     @ApiOperation(value = "Update", notes = "Method used for change card status", nickname = "Bilol")

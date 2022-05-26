@@ -8,5 +8,4 @@ import java.time.LocalDateTime;
 @Data
 public class CardDTO {
     private String clientId;
-    private String phone;
 }

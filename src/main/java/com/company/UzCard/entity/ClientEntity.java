@@ -17,6 +17,8 @@ public class ClientEntity extends BaseEntity {
     private String surname;
     @Column
     private String phone;
+    @Column
+    private String profileUserName;
 
     @Column
     @Enumerated(EnumType.STRING)
