@@ -17,7 +17,8 @@ public class BaseEntity {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "id")
     private String uuid;
-
     @Column
-    private LocalDateTime createdDate;
+    private boolean visible;
+    @Column
+    private LocalDateTime createdDate = LocalDateTime.now();
 }

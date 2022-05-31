@@ -1,5 +1,6 @@
 package com.company.UzCard.service;
 
+import com.company.UzCard.dto.CardFilterDTO;
 import com.company.UzCard.dto.request.CardDTO;
 import com.company.UzCard.dto.request.UpdatePhoneDTO;
 import com.company.UzCard.dto.response.CardBalanceDTO;
@@ -8,6 +9,7 @@ import com.company.UzCard.entity.CardEntity;
 import com.company.UzCard.enums.EntityStatus;
 import com.company.UzCard.exp.ItemNotFoundException;
 import com.company.UzCard.mapper.CardBalanceMapper;
+import com.company.UzCard.repository.custom.CardCustomRespository;
 import com.company.UzCard.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +26,9 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class CardService {
+
     private final CardRepository cardRepository;
+    private final CardCustomRespository cardCustomRespository;
 
     public ResponseCardDTO create(CardDTO dto) {
         CardEntity entity = new CardEntity();
@@ -32,6 +36,7 @@ public class CardService {
         entity.setBalance(0L);
         entity.setClientId(dto.getClientId());
         entity.setStatus(EntityStatus.ACTIVE);
+        entity.setVisible(true);
         String expDate = String.valueOf(LocalDateTime.now().plusYears(4));
         entity.setExpDate(expDate);
         cardRepository.save(entity);
@@ -71,6 +76,15 @@ public class CardService {
         return toDTO(optional.get());
     }
 
+    public CardEntity getByCardNumberV2(String cardNumber) {
+        Optional<CardEntity> optional = cardRepository.findByCardNumberAndStatus(cardNumber, EntityStatus.ACTIVE);
+        if (optional.isEmpty()){
+            log.error("Card Not Found {} {}", cardNumber, CardService.class);
+            throw new ItemNotFoundException("Card Not Found");
+        }
+        return optional.get();
+    }
+
     public CardBalanceDTO getBalanceByCardNumber(String cardNumber) {
         CardBalanceMapper mapper = cardRepository.getBalanceByCardNumber(cardNumber);
         if (mapper == null){
@@ -81,6 +95,10 @@ public class CardService {
         dto.setId(mapper.getId());
         dto.setBalance(mapper.getBalance());
         return dto;
+    }
+
+    public List<ResponseCardDTO> filter(CardFilterDTO cardFilterDTO){
+        return cardCustomRespository.filter(cardFilterDTO);
     }
 
     public String  update(String cardId, EntityStatus status) {

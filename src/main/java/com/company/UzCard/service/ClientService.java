@@ -39,6 +39,7 @@ public class ClientService {
         entity.setName(dto.getName());
         entity.setPhone(dto.getPhone());
         entity.setSurname(dto.getSurname());
+        entity.setVisible(true);
         entity.setProfileUserName(profileUserName);
         entity.setStatus(EntityStatus.ACTIVE);
         clientRepository.save(entity);

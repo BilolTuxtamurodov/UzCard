@@ -11,6 +11,4 @@ public class TransactionDTO {
     private String fromCard;
     private String toCard;
     private Long amount;
-    private TransactionStatus status;
-    private String profileId;
 }

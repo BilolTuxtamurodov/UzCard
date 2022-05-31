@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ResponseTransactionDTO {
-    private String uuid;
+    private String id;
     private LocalDateTime createdDate;
     private String fromCard;
     private String toCard;

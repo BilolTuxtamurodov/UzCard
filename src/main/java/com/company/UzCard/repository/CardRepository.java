@@ -30,4 +30,9 @@ public interface CardRepository extends JpaRepository<CardEntity, String> {
     @Transactional
     @Query("update CardEntity as c set c.phone=:phone where c.uuid=:id")
     int updatePhone(@Param("phone") String phone,@Param("id") String id);
+
+    @Modifying
+    @Transactional
+    @Query("update CardEntity as c set c.balance=:amount where c.cardNumber=:cardNumber")
+    int updateAmount(@Param("amount") long amount, @Param("cardNumber") String cardNumber);
 }

@@ -1,5 +1,6 @@
 package com.company.UzCard.controller;
 
+import com.company.UzCard.dto.CardFilterDTO;
 import com.company.UzCard.dto.request.CardDTO;
 import com.company.UzCard.dto.request.UpdatePhoneDTO;
 import com.company.UzCard.dto.response.CardBalanceDTO;
@@ -22,7 +23,6 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class CardController  {
-
     private final CardService cardService;
 
     @ApiOperation(value = "Create", notes = "Method used for create card", nickname = "Bilol")
@@ -67,6 +67,12 @@ public class CardController  {
     @GetMapping("/card/balanse{cardNumber}")
     public ResponseEntity<CardBalanceDTO> getBalanceByCardNumber(@PathVariable("cardNumber") String cardNumber){
         return ResponseEntity.ok(cardService.getBalanceByCardNumber(cardNumber));
+    }
+
+    @ApiOperation(value = "Get Card list filter ", notes = "Method used get card list with filter", nickname = "Bilol")
+    @GetMapping("/filter")
+    public ResponseEntity<List<ResponseCardDTO>> filter(@RequestBody  CardFilterDTO cardFilter){
+        return ResponseEntity.ok(cardService.filter(cardFilter));
     }
 
 }

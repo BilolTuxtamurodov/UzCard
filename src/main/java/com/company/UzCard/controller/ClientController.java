@@ -6,6 +6,7 @@ import com.company.UzCard.dto.request.UpdatePhoneDTO;
 import com.company.UzCard.dto.response.ResponseClientDTO;
 import com.company.UzCard.enums.EntityStatus;
 import com.company.UzCard.service.ClientService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import javax.validation.Valid;
 @RequestMapping("/client")
 @Slf4j
 @RequiredArgsConstructor
+@Api(tags = "Client")
 public class ClientController  {
     private final ClientService clientService;
 
@@ -38,7 +40,7 @@ public class ClientController  {
     @ApiOperation(value = "Change client status", notes = "Method used for change client status", nickname = "Bilol")
     @PutMapping("/update/status{clientId}")
     public ResponseEntity<String> updateStatus(@PathVariable("clientId") String clientId,
-                                                    @RequestBody EntityStatus status){
+                                                    @RequestParam EntityStatus status){
         return ResponseEntity.ok(clientService.updateStatus(clientId, status));
     }
 
